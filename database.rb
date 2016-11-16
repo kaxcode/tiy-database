@@ -5,8 +5,9 @@ class RunDatabase
 
   def promt_for_answer
     puts "There are #{@people.length} people in my amazing database"
+    print @people
     print "Would you like to add (A), search (S), or delete (D)? "
-    gets.chomp
+    gets.chomp.upcase
   end
 
   def run
@@ -47,6 +48,7 @@ class RunDatabase
             index = 0
             loop do
               if index >= @people.length
+                puts "I never found #{search_name}"
                 break
               end
               person = @people[index]
@@ -62,35 +64,27 @@ class RunDatabase
               end
 
               index = index + 1
-
-              if search_name != person.name
-                puts "NOT FOUND!"
-                break
-              end
             end
 
         when "D"
             print "What name do you want to delete? "
             delete_name = gets.chomp
+
             index = 0
             loop do
               if index >= @people.length
+                puts "Never found #{delete_name}"
                 break
               end
+
               person = @people[index]
               if delete_name == person.name
-                puts "Deleted"
+                @people.delete(person)
                 break
               end
 
               index = index + 1
-
-              if delete_name 1= person.name
-                puts "NOT FOUND!"
-                break
-              end
             end
-
       end
     end
   end
