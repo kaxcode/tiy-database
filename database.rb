@@ -3,17 +3,49 @@ class RunDatabase
     @people = []
   end
 
+#Banner styling
+  def banner(message)
+    2.times do
+      puts
+    end
+
+    puts "*" * (8 + message.length)
+    puts "!😱  #{message} 😱 !"
+    puts "*" * (8 + message.length)
+
+    2.times do
+      puts
+    end
+  end
+
+  def banner_two(message)
+    2.times do
+      puts
+    end
+
+    puts "-" * (4 + message.length)
+    puts "| #{message} |"
+    puts "_" * (4 + message.length)
+
+    2.times do
+      puts
+    end
+  end
+
+#Initial app question
   def promt_for_answer
     puts "There are #{@people.length} people in my amazing database"
-    print @people
-    print "Would you like to add (A), search (S), or delete (D)? "
+    banner_two "Would you like to add (A), search (S), or delete (D)? "
     gets.chomp.upcase
   end
 
+# Running the app
   def run
     loop do
       answer = promt_for_answer
       case answer
+
+#When user wants to Add
         when "A"
           person = Person.new
 
@@ -40,15 +72,14 @@ class RunDatabase
 
           @people << person
 
-# looping through each element of @people
-# ... and compare that person name to search_name
+# Looping to search for the indexes withing the @people array and comparing it with the users input. Printing out object and its methods
         when "S"
             print "What name do you want to search for? "
             search_name = gets.chomp
             index = 0
             loop do
               if index >= @people.length
-                puts "I never found #{search_name}"
+                banner "I never found #{search_name}"
                 break
               end
               person = @people[index]
@@ -66,6 +97,7 @@ class RunDatabase
               index = index + 1
             end
 
+# Looping to search for the indexes withing the @people array and comparing it with the users input. Deleted the object and it's related methods
         when "D"
             print "What name do you want to delete? "
             delete_name = gets.chomp
@@ -73,7 +105,7 @@ class RunDatabase
             index = 0
             loop do
               if index >= @people.length
-                puts "Never found #{delete_name}"
+                banner "Never found #{delete_name}"
                 break
               end
 
@@ -85,6 +117,9 @@ class RunDatabase
 
               index = index + 1
             end
+# When entry is not valid
+        else
+          banner "Not a valid entry. Please try again and press Enter Key."
       end
     end
   end
