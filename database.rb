@@ -18,7 +18,7 @@ class RunDatabase
 
           print "First Name: "
           person.name = gets.chomp
-gi
+
           print "Phone Number: "
           person.phone_number = gets.chomp
 
@@ -38,16 +38,59 @@ gi
           person.github_account = gets.chomp
 
           @people << person
-        when "S"
-            puts "What name do you want to search for? "
-            search_name = gets.chomp
 
-            # looping through each element of @people
-            # ... and compare that person name to search_name
+# looping through each element of @people
+# ... and compare that person name to search_name
+        when "S"
+            print "What name do you want to search for? "
+            search_name = gets.chomp
+            index = 0
+            loop do
+              if index >= @people.length
+                break
+              end
+              person = @people[index]
+              if search_name == person.name
+                puts "Got em!"
+                puts person.name
+                puts person.phone_number
+                puts person.address
+                puts person.position
+                puts person.slack_account
+                puts person.github_account
+                break
+              end
+
+              index = index + 1
+
+              if search_name != person.name
+                puts "NOT FOUND!"
+                break
+              end
+            end
 
         when "D"
-            print "First Name: "
-            search_name = @person.includes?[0]
+            print "What name do you want to delete? "
+            delete_name = gets.chomp
+            index = 0
+            loop do
+              if index >= @people.length
+                break
+              end
+              person = @people[index]
+              if delete_name == person.name
+                puts "Deleted"
+                break
+              end
+
+              index = index + 1
+
+              if delete_name 1= person.name
+                puts "NOT FOUND!"
+                break
+              end
+            end
+
       end
     end
   end
@@ -60,4 +103,3 @@ end
 #------
 run_database = RunDatabase.new
 run_database.run
-p person
