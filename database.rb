@@ -1,4 +1,4 @@
-class RunDatabase
+class Database
   def initialize
     @people = []
   end
@@ -130,5 +130,5 @@ class Person
 end
 
 #------
-run_database = RunDatabase.new
+run_database = Database.new
 run_database.run
